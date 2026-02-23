@@ -1,29 +1,25 @@
 import { useState, useRef, useEffect } from 'react';
-import {
-    ArrowLeft,
-    Share2,
-    Instagram,
-    MessageSquare,
-    PlayCircle,
-    Music2,
-    ChevronRight,
-    FileText,
-    ExternalLink,
-    Monitor,
-    Keyboard,
-    MousePointer2,
-    ShoppingCart,
-    Briefcase,
-    Mail,
-    Youtube,
-    ShieldCheck,
-    Globe,
-    Lock
+import { 
+  Youtube,
+  ChevronRight, 
+  FileText, 
+  ExternalLink, 
+  Monitor, 
+  Keyboard, 
+  MousePointer2, 
+  ShoppingCart,
+  Briefcase,
+  Mail,
+  ShieldCheck,
+  Globe,
+  Lock,
+  PlayCircle,
 } from 'lucide-react';
 import { motion } from 'motion/react';
+import { PiFacebookLogoDuotone, PiInstagramLogoDuotone, PiLinkedinLogoDuotone, PiPinterestLogoDuotone, PiSnapchatLogoDuotone, PiThreadsLogoDuotone, PiTiktokLogoDuotone, PiTwitterLogoDuotone, PiVideoCameraDuotone, PiYoutubeLogoDuotone } from 'react-icons/pi';
 
 const IMAGES = {
-    hero: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBHUgg4VYEVmF-4TK8J49wn4pakp7P9gPphnwDZpQkAiW0Hhgm1Y6sCi_du9OBDaFVt1nmsI-lgCJCKztVsT6PZoq4LDWgd-WDd8SEPt1KhYxiu1RIbt754U5qQdIKkE2U5w76eXjT8_iIc5riJRwRwt6k_paCTo5meHuqmnTgSFzriETksDlP0z1Pp8smZsah-r4qbkFEjl65i8NvyrQ-FqPO_o2u9rHFWchyBJYmtRF1h92H8tKzlB-83U8tQYATFsOLUB2G4-g4',
+    hero: 'https://picsum.photos/seed/programming/1920/1080?blur=2',
     profile: 'https://github.com/brunofhorn.png',
     keyboard: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCiS7RViIuScAxO1S5uztK_biFcdleZUv0aEdAMoDEU4UhfQbgeTaULzYMgmbLWqSYg-kbaSrUgSB2GJnCLEJJCDA4PtIZM9ZbAf30Q0FjXXsMdTMKyHfHvBCiPAl1IsLKrj4HhUOfmnW4FKslf3ZZHP_ls_JZRVwfF7KtBRv3J1AZ5Ew1wKkkMS0txa_jQ-6euufwldzylJgcq1dIXo1igsowl_FFQ9ApnW8RTcWseepKzYuhz8tjuBOgCAga5EXNlNkYWaDmJT0w',
     monitor: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCqVKR3bOmXKhZw_zC5OEB_2nJ6p_LWq8SIF8Rh91M_UK-E9MqOShMAhcd1yQyuDajAxEbV-QLBm7p6Zlof0Xq_vgQXeefleTPGolp35I28wpDnv1JNbFEFvCW76hfZ0qQePQ_95nF2u5bjTApRcr64GA4e4bT85GpyuTaJp0HG1tM9DpOOMvtGE80d-D_I1LxGtSrRTnRXLyJ-xTqFSnlryaOKKpPd2LN55IN7S7IXoIx-OPnlpinBi3zGyN_KT_XP7ApILWDlu-8',
@@ -62,6 +58,20 @@ const LINKS = [
     }
 ];
 
+const SOCIAL_LINKS = [
+  { icon: PiInstagramLogoDuotone, label: 'Instagram', url: 'https://instagram.com/brunofhorn' },
+  { icon: PiTiktokLogoDuotone, label: 'TikTok', url: 'https://tiktok.com/@brunofhorn' },
+  { icon: PiTiktokLogoDuotone, label: 'TikTok', url: 'https://tiktok.com/@umdiaeuleio' },
+  { icon: PiYoutubeLogoDuotone, label: 'YouTube', url: 'https://youtube.com/@brunofhorn' },
+  { icon: PiLinkedinLogoDuotone, label: 'LinkedIn', url: 'https://linkedin.com/in/brunofhorn' },
+  { icon: PiFacebookLogoDuotone, label: 'Facebook', url: 'https://facebook.com/obrunofhorn' },
+  { icon: PiThreadsLogoDuotone, label: 'Threads', url: 'https://threads.net/brunofhorn' },
+  { icon: PiTwitterLogoDuotone, label: 'Twitter / X', url: 'https://twitter.com/@brunofhorn' },
+  { icon: PiPinterestLogoDuotone, label: 'Pinterest', url: 'https://pinterest.com/brunofhorn' },
+  { icon: PiSnapchatLogoDuotone, label: 'Snapchat', url: 'https://snapchat.com/brunofhorn' },
+  { icon: PiVideoCameraDuotone, label: 'Kwai', url: 'https://kwai.com/@brunofhorn' }
+];
+
 export default function App() {
     const [width, setWidth] = useState(0);
     const carousel = useRef<HTMLDivElement>(null);
@@ -76,14 +86,14 @@ export default function App() {
         <div className="min-h-screen bg-[#161022] text-slate-100 font-sans selection:bg-indigo-500/30">
             <div className="max-w-120 mx-auto bg-[#161022] min-h-screen shadow-2xl relative flex flex-col">
 
-                <section className="relative h-40 overflow-hidden">
-                    <img
-                        src={IMAGES.hero}
-                        alt="Background"
-                        className="w-full h-full object-cover opacity-60"
-                        referrerPolicy="no-referrer"
-                    />
-                    <div className="absolute inset-0 bg-linear-to-b from-transparent to-[#161022]" />
+                <section className="relative h-48 overflow-hidden">
+                <img 
+                    src={IMAGES.hero} 
+                    alt="Background" 
+                    className="w-full h-full object-cover opacity-40"
+                    referrerPolicy="no-referrer"
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#161022]/20 to-[#161022]" />
                 </section>
 
                 <section className="flex flex-col items-center -mt-16 px-6 relative z-10">
@@ -112,21 +122,19 @@ export default function App() {
                 {/* Social Icons */}
                 <section className="px-6 py-8">
                     <div className="flex justify-center gap-4">
-                        {[
-                            { icon: Instagram, label: 'Instagram' },
-                            { icon: MessageSquare, label: 'Chat' },
-                            { icon: PlayCircle, label: 'YouTube' },
-                            { icon: Music2, label: 'TikTok' }
-                        ].map((social, idx) => (
-                            <motion.a
-                                key={idx}
-                                href="#"
-                                whileHover={{ scale: 1.1, backgroundColor: 'rgba(32, 64, 149, 0.2)' }}
-                                whileTap={{ scale: 0.95 }}
-                                className="w-12 h-12 rounded-default bg-slate-800 flex items-center justify-center text-slate-300 transition-colors"
-                            >
-                                <social.icon className="w-5 h-5" />
-                            </motion.a>
+                        {SOCIAL_LINKS.map((social, idx) => (
+                        <motion.a
+                            key={idx}
+                            href={social.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            whileHover={{ scale: 1.1, backgroundColor: 'rgba(32, 64, 149, 0.2)' }}
+                            whileTap={{ scale: 0.95 }}
+                            className="w-11 h-11 rounded-default bg-slate-800 flex items-center justify-center text-slate-300 transition-colors"
+                            title={social.label}
+                        >
+                            <social.icon size={15} />
+                        </motion.a>
                         ))}
                     </div>
                     <div className="flex justify-center mt-6">
@@ -136,7 +144,6 @@ export default function App() {
                     </div>
                 </section>
 
-                {/* Links List */}
                 <section className="px-6 space-y-3 pb-8">
                     {LINKS.map((link, idx) => (
                         <motion.button

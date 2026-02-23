@@ -8,15 +8,13 @@ import {
   Keyboard, 
   MousePointer2, 
   ShoppingCart,
-  Briefcase,
-  Mail,
   ShieldCheck,
   Globe,
   Lock,
   PlayCircle,
 } from 'lucide-react';
 import { motion } from 'motion/react';
-import { PiFacebookLogoDuotone, PiInstagramLogoDuotone, PiLinkedinLogoDuotone, PiPinterestLogoDuotone, PiSnapchatLogoDuotone, PiThreadsLogoDuotone, PiTiktokLogoDuotone, PiTwitterLogoDuotone, PiVideoCameraDuotone, PiYoutubeLogoDuotone } from 'react-icons/pi';
+import { PiBookDuotone, PiEnvelopeDuotone, PiFacebookLogoDuotone, PiGithubLogoDuotone, PiInstagramLogoDuotone, PiLinkedinLogoDuotone, PiPinterestLogoDuotone, PiSnapchatLogoDuotone, PiThreadsLogoDuotone, PiTiktokLogoDuotone, PiTwitterLogoDuotone, PiVideoCameraDuotone, PiYoutubeLogoDuotone } from 'react-icons/pi';
 
 const IMAGES = {
     hero: 'https://picsum.photos/seed/programming/1920/1080?blur=2',
@@ -29,29 +27,33 @@ const IMAGES = {
 
 const LINKS = [
     {
-        title: 'My Latest YouTube Video',
-        icon: Youtube,
-        color: 'bg-primary',
-        textColor: 'text-white',
-        shadow: 'shadow-primary/20'
-    },
-    {
-        title: 'Rocketseat Partnership',
+        title: 'Junte-se à Rocketseat',
+        subtitle: 'Comece ou evolua sua carreira em programação com um desconto especial.',
         logo: IMAGES.rocketseat,
         color: 'bg-slate-800',
         textColor: 'text-slate-100',
         shadow: ''
     },
     {
-        title: 'Portfolio',
-        icon: Briefcase,
+        title: 'Leituras de 2026',
+        subtitle: 'Lista com todos livros e HQs que li em 2026.',
+        icon: PiBookDuotone,
+        color: 'bg-primary',
+        textColor: 'text-white',
+        shadow: 'shadow-primary/20'
+    },
+    {
+        title: 'GitHub - brunofhorn/brev.ly',
+        subtitle: 'Dá uma olhada no projeto Brev.ly da pós.',
+        icon: PiGithubLogoDuotone,
         color: 'bg-slate-800',
         textColor: 'text-slate-100',
         shadow: ''
     },
     {
-        title: 'Contact Me',
-        icon: Mail,
+        title: 'Parcerias?',
+        subtitle: 'parcerias@brunofhorn.com.br',
+        icon: PiEnvelopeDuotone,
         color: 'bg-slate-800',
         textColor: 'text-slate-100',
         shadow: ''
@@ -155,12 +157,13 @@ export default function App() {
                             <div className="flex items-center gap-3">
                                 <div className={`w-10 h-10 rounded-default ${link.color === 'bg-primary' ? 'bg-white/20' : 'bg-slate-700'} flex items-center justify-center overflow-hidden`}>
                                     {link.icon ? (
-                                        <link.icon className="w-5 h-5" />
+                                        <link.icon size={20} />
                                     ) : (
                                         <img src={link.logo} alt={link.title} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
                                     )}
                                 </div>
                                 <span className="text-sm">{link.title}</span>
+                                {link.subtitle && <span className="text-xs">{link.subtitle}</span>}
                             </div>
                             <ChevronRight className="w-4 h-4 opacity-50 group-hover:opacity-100 transition-opacity" />
                         </motion.button>

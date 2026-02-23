@@ -1,11 +1,9 @@
 import { useState, useRef, useEffect } from 'react';
 import { 
-  Youtube,
   ChevronRight, 
   FileText, 
   ExternalLink, 
   Monitor, 
-  Keyboard, 
   MousePointer2, 
   ShoppingCart,
   ShieldCheck,
@@ -14,13 +12,15 @@ import {
   PlayCircle,
 } from 'lucide-react';
 import { motion } from 'motion/react';
-import { PiBookDuotone, PiEnvelopeDuotone, PiFacebookLogoDuotone, PiGithubLogoDuotone, PiInstagramLogoDuotone, PiLinkedinLogoDuotone, PiPinterestLogoDuotone, PiSnapchatLogoDuotone, PiThreadsLogoDuotone, PiTiktokLogoDuotone, PiTwitterLogoDuotone, PiVideoCameraDuotone, PiYoutubeLogoDuotone } from 'react-icons/pi';
+import { PiBookDuotone, PiEnvelopeDuotone, PiFacebookLogoDuotone, PiGithubLogoDuotone, PiInstagramLogoDuotone, PiKeyboardDuotone, PiLinkedinLogoDuotone, PiMonitorDuotone, PiPinterestLogoDuotone, PiSnapchatLogoDuotone, PiThreadsLogoDuotone, PiTiktokLogoDuotone, PiTwitterLogoDuotone, PiVideoCameraDuotone, PiYoutubeLogoDuotone } from 'react-icons/pi';
+import monitorImg from './assets/img/monitor-lg-ultra-gear.jpg';
+import keyboardImg from './assets/img/teclado-redragon-ucal-pro.jpg';
 
 const IMAGES = {
     hero: 'https://picsum.photos/seed/programming/1920/1080?blur=2',
     profile: 'https://github.com/brunofhorn.png',
-    keyboard: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCiS7RViIuScAxO1S5uztK_biFcdleZUv0aEdAMoDEU4UhfQbgeTaULzYMgmbLWqSYg-kbaSrUgSB2GJnCLEJJCDA4PtIZM9ZbAf30Q0FjXXsMdTMKyHfHvBCiPAl1IsLKrj4HhUOfmnW4FKslf3ZZHP_ls_JZRVwfF7KtBRv3J1AZ5Ew1wKkkMS0txa_jQ-6euufwldzylJgcq1dIXo1igsowl_FFQ9ApnW8RTcWseepKzYuhz8tjuBOgCAga5EXNlNkYWaDmJT0w',
-    monitor: '/assets/img/monitor-lg-ultra-gear.jpg',
+    keyboard: keyboardImg,
+    monitor: monitorImg,
     mouse: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCCK5FhkW1kS3tpNo1tawfeyQ7TRc7ARTNM2-Srwtp4wfHarD6bR1QuR4k6uaG_b_FibZWuHXbI_qlKaqJyyyUtABDQy2wB3AjBHaUB1sR46X49sZY8nskdkxs1GKwxu7-hfjPwOmNAAwjNV8_BoXmh_6-E_gmtuZ-pGm4C5rmQE2Dt0un2FOXc6uhGp7MIkkusu8OoJfiJ-v67ylFRjVpvw3ThEfLdepx0dxz7ZkNwmXuE-38ZD_bXxUqDrckH20OtstN0AD0JvY8',
     rocketseat: 'https://github.com/Rocketseat.png'
 };
@@ -78,14 +78,14 @@ const SETUP = [
     {
         name: 'Monitor LG Ultra Gear 24"',
         desc: 'IPS / 180Hz / HDR',
-        img: IMAGES.keyboard,
-        icon: Keyboard
+        img: IMAGES.monitor,
+        icon: PiMonitorDuotone
     },
     {
-        name: 'Curved Monitor',
-        desc: '34" Ultra-Wide 144Hz',
-        img: IMAGES.monitor,
-        icon: Monitor
+        name: 'Teclado Redragon UCAL Pro',
+        desc: 'Mecânico / Switch Brown / RGB',
+        img: IMAGES.keyboard,
+        icon: PiKeyboardDuotone
     },
     {
         name: 'Gaming Mouse',
@@ -143,7 +143,7 @@ export default function App() {
                 </section>
 
                 <section className="px-6 py-8">
-                    <div className="grid grid-cols-8 gap-4">
+                    <div className="flex flex-wrap justify-center gap-3">
                         {SOCIAL_LINKS.map((social, idx) => (
                         <motion.a
                             key={idx}
@@ -155,7 +155,7 @@ export default function App() {
                             className="w-11 h-11 rounded-default bg-slate-800 flex items-center justify-center text-slate-300 transition-colors"
                             title={social.label}
                         >
-                            <social.icon size={15} />
+                            <social.icon size={20} />
                         </motion.a>
                         ))}
                     </div>
@@ -172,9 +172,9 @@ export default function App() {
                             key={idx}
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
-                            className={`w-full p-1 pr-5 rounded-default ${link.color} ${link.textColor} font-bold flex items-center justify-between shadow-lg ${link.shadow} group`}
+                            className={`w-full p-1 py-2.5 pr-5 rounded-default ${link.color} ${link.textColor} font-bold text-left flex items-center justify-between shadow-lg ${link.shadow} group`}
                         >
-                            <div className="flex items-center gap-3">
+                            <div className="flex items-center gap-3 flex-1 min-w-0">
                                 <div className={`w-10 h-10 rounded-default ${link.color === 'bg-primary' ? 'bg-white/20' : 'bg-slate-700'} flex items-center justify-center overflow-hidden`}>
                                     {link.icon ? (
                                         <link.icon size={20} />
@@ -182,24 +182,23 @@ export default function App() {
                                         <img src={link.logo} alt={link.title} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
                                     )}
                                 </div>
-                                <div className="flex flex-col flex-1 justify-start items-start gap-2">
-                                    <span className="text-sm">{link.title}</span>
-                                    {link.subtitle && <span className="text-xs">{link.subtitle}</span>}
+                                <div className="flex flex-col flex-1 min-w-0 justify-start items-start gap-0.5 text-left">
+                                    <span className="text-sm text-left leading-tight">{link.title}</span>
+                                    {link.subtitle && <span className="text-xs text-left leading-snug">{link.subtitle}</span>}
                                 </div>
                             </div>
-                            <ChevronRight className="w-4 h-4 opacity-50 group-hover:opacity-100 transition-opacity" />
+                            <ChevronRight className="ml-3 w-4 h-4 shrink-0 opacity-50 group-hover:opacity-100 transition-opacity" />
                         </motion.button>
                     ))}
                 </section>
                 
-                {/* My Setup */}
                 <section className="pb-12 overflow-hidden">
                     <div className="px-6 mb-4 flex items-center justify-between">
                         <div className="flex items-center gap-2">
                             <Monitor className="w-5 h-5 text-primary" />
-                            <h3 className="text-lg font-bold">My Setup</h3>
+                            <h3 className="text-lg font-bold">Meu Setup</h3>
                         </div>
-                        <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Drag to explore</span>
+                        <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Arraste para explorar</span>
                     </div>
 
                     <motion.div
@@ -230,7 +229,7 @@ export default function App() {
                                         <p className="text-xs text-slate-500 mt-1">{item.desc}</p>
                                         <button className="mt-4 w-full py-2.5 bg-primary rounded-default text-white text-[10px] font-bold flex items-center justify-center gap-2 pointer-events-auto">
                                             <ShoppingCart className="w-3.5 h-3.5" />
-                                            Buy on Amazon
+                                            Clique aqui para Comprar
                                         </button>
                                     </div>
                                 </motion.div>
@@ -247,8 +246,8 @@ export default function App() {
                     <div className="aspect-video rounded-default overflow-hidden border border-slate-800 shadow-2xl bg-black">
                         <iframe
                             className="w-full h-full"
-                            src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-                            title="YouTube video player"
+                            src="https://www.youtube.com/embed/c2BmYRoXPKc?si=oFj8x_N_8HAaSADJ"
+                            title="Aprenda CSS Jogando"
                             frameBorder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             allowFullScreen
@@ -303,3 +302,5 @@ export default function App() {
         </div>
     );
 }
+
+

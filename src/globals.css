@@ -1,0 +1,6 @@
+@import "tailwindcss";
+
+@theme {
+    --color-primary: #204095;
+    --radius-default: 12px;
+}

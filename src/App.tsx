@@ -123,7 +123,7 @@ export default function App() {
 
                 {/* Social Icons */}
                 <section className="px-6 py-8">
-                    <div className="flex justify-center gap-4">
+                    <div className="grid grid-cols-5 gap-4">
                         {SOCIAL_LINKS.map((social, idx) => (
                         <motion.a
                             key={idx}
@@ -162,57 +162,16 @@ export default function App() {
                                         <img src={link.logo} alt={link.title} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
                                     )}
                                 </div>
-                                <span className="text-sm">{link.title}</span>
-                                {link.subtitle && <span className="text-xs">{link.subtitle}</span>}
+                                <div className="flex flex-col gap-2">
+                                    <span className="text-sm">{link.title}</span>
+                                    {link.subtitle && <span className="text-xs">{link.subtitle}</span>}
+                                </div>
                             </div>
                             <ChevronRight className="w-4 h-4 opacity-50 group-hover:opacity-100 transition-opacity" />
                         </motion.button>
                     ))}
                 </section>
-
-                {/* Media Kit Banner */}
-                <section className="px-6 pb-8">
-                    <div className="relative overflow-hidden rounded-default bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/20 p-8 text-center">
-                        <div className="relative z-10 flex flex-col items-center">
-                            <div className="w-12 h-12 rounded-default bg-primary flex items-center justify-center text-white shadow-xl shadow-primary/40 mb-4">
-                                <FileText className="w-6 h-6" />
-                            </div>
-                            <h3 className="text-lg font-bold">Media Kit 2024</h3>
-                            <p className="text-slate-400 text-sm mt-2 max-w-[240px]">
-                                Looking to collaborate? Download my latest stats, audience demographics, and brand partnership details.
-                            </p>
-                            <motion.button
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                className="mt-6 px-8 py-3 bg-primary rounded-default text-sm font-bold text-white flex items-center gap-2 shadow-lg shadow-primary/30"
-                            >
-                                View Media Kit <ExternalLink className="w-4 h-4" />
-                            </motion.button>
-                        </div>
-                        {/* Decorative Blobs */}
-                        <div className="absolute -top-10 -right-10 w-32 h-32 bg-primary/10 blur-3xl rounded-full" />
-                        <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-primary/5 blur-3xl rounded-full" />
-                    </div>
-                </section>
-
-                {/* Latest Video */}
-                <section className="px-6 pb-8">
-                    <div className="flex items-center gap-2 mb-4">
-                        <PlayCircle className="w-5 h-5 text-primary" />
-                        <h3 className="text-lg font-bold">Latest Video</h3>
-                    </div>
-                    <div className="aspect-video rounded-default overflow-hidden border border-slate-800 shadow-2xl bg-black">
-                        <iframe
-                            className="w-full h-full"
-                            src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-                            title="YouTube video player"
-                            frameBorder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            allowFullScreen
-                        />
-                    </div>
-                </section>
-
+                
                 {/* My Setup */}
                 <section className="pb-12 overflow-hidden">
                     <div className="px-6 mb-4 flex items-center justify-between">
@@ -279,9 +238,50 @@ export default function App() {
                     </motion.div>
                 </section>
 
+                <section className="px-6 pb-8">
+                    <div className="flex items-center gap-2 mb-4">
+                        <PlayCircle className="w-5 h-5 text-primary" />
+                        <h3 className="text-lg font-bold">Último Vídeo no Youtube</h3>
+                    </div>
+                    <div className="aspect-video rounded-default overflow-hidden border border-slate-800 shadow-2xl bg-black">
+                        <iframe
+                            className="w-full h-full"
+                            src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                            title="YouTube video player"
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowFullScreen
+                        />
+                    </div>
+                </section>
+
+                <section className="px-6 pb-8">
+                    <div className="relative overflow-hidden rounded-default bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/20 p-8 text-center">
+                        <div className="relative z-10 flex flex-col items-center">
+                            <div className="w-12 h-12 rounded-default bg-primary flex items-center justify-center text-white shadow-xl shadow-primary/40 mb-4">
+                                <FileText className="w-6 h-6" />
+                            </div>
+                            <h3 className="text-lg font-bold">Media Kit 2026</h3>
+                            <p className="text-slate-400 text-sm mt-2 max-w-[240px]">
+                                Looking to collaborate? Download my latest stats, audience demographics, and brand partnership details.
+                            </p>
+                            <motion.button
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                className="mt-6 px-8 py-3 bg-primary rounded-default text-sm font-bold text-white flex items-center gap-2 shadow-lg shadow-primary/30"
+                            >
+                                View Media Kit <ExternalLink className="w-4 h-4" />
+                            </motion.button>
+                        </div>
+                        {/* Decorative Blobs */}
+                        <div className="absolute -top-10 -right-10 w-32 h-32 bg-primary/10 blur-3xl rounded-full" />
+                        <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-primary/5 blur-3xl rounded-full" />
+                    </div>
+                </section>
+
                 {/* Footer */}
                 <footer className="mt-auto p-10 text-center border-t border-slate-800/50">
-                    <p className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em]">Created with passion by João Silva</p>
+                    <p className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em]">Created with passion by Bruno Fernandes Horn</p>
                     <div className="mt-6 flex justify-center gap-6 text-slate-600">
                         <ShieldCheck className="w-5 h-5" />
                         <Globe className="w-5 h-5" />

@@ -20,7 +20,7 @@ const IMAGES = {
     hero: 'https://picsum.photos/seed/programming/1920/1080?blur=2',
     profile: 'https://github.com/brunofhorn.png',
     keyboard: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCiS7RViIuScAxO1S5uztK_biFcdleZUv0aEdAMoDEU4UhfQbgeTaULzYMgmbLWqSYg-kbaSrUgSB2GJnCLEJJCDA4PtIZM9ZbAf30Q0FjXXsMdTMKyHfHvBCiPAl1IsLKrj4HhUOfmnW4FKslf3ZZHP_ls_JZRVwfF7KtBRv3J1AZ5Ew1wKkkMS0txa_jQ-6euufwldzylJgcq1dIXo1igsowl_FFQ9ApnW8RTcWseepKzYuhz8tjuBOgCAga5EXNlNkYWaDmJT0w',
-    monitor: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCqVKR3bOmXKhZw_zC5OEB_2nJ6p_LWq8SIF8Rh91M_UK-E9MqOShMAhcd1yQyuDajAxEbV-QLBm7p6Zlof0Xq_vgQXeefleTPGolp35I28wpDnv1JNbFEFvCW76hfZ0qQePQ_95nF2u5bjTApRcr64GA4e4bT85GpyuTaJp0HG1tM9DpOOMvtGE80d-D_I1LxGtSrRTnRXLyJ-xTqFSnlryaOKKpPd2LN55IN7S7IXoIx-OPnlpinBi3zGyN_KT_XP7ApILWDlu-8',
+    monitor: '/assets/img/monitor-lg-ultra-gear.jpg',
     mouse: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCCK5FhkW1kS3tpNo1tawfeyQ7TRc7ARTNM2-Srwtp4wfHarD6bR1QuR4k6uaG_b_FibZWuHXbI_qlKaqJyyyUtABDQy2wB3AjBHaUB1sR46X49sZY8nskdkxs1GKwxu7-hfjPwOmNAAwjNV8_BoXmh_6-E_gmtuZ-pGm4C5rmQE2Dt0un2FOXc6uhGp7MIkkusu8OoJfiJ-v67ylFRjVpvw3ThEfLdepx0dxz7ZkNwmXuE-38ZD_bXxUqDrckH20OtstN0AD0JvY8',
     rocketseat: 'https://github.com/Rocketseat.png'
 };
@@ -74,6 +74,27 @@ const SOCIAL_LINKS = [
   { icon: PiVideoCameraDuotone, label: 'Kwai', url: 'https://kwai.com/@brunofhorn' }
 ];
 
+const SETUP = [
+    {
+        name: 'Monitor LG Ultra Gear 24"',
+        desc: 'IPS / 180Hz / HDR',
+        img: IMAGES.keyboard,
+        icon: Keyboard
+    },
+    {
+        name: 'Curved Monitor',
+        desc: '34" Ultra-Wide 144Hz',
+        img: IMAGES.monitor,
+        icon: Monitor
+    },
+    {
+        name: 'Gaming Mouse',
+        desc: 'Lightweight, Wireless Pro',
+        img: IMAGES.mouse,
+        icon: MousePointer2
+    }
+]
+
 export default function App() {
     const [width, setWidth] = useState(0);
     const carousel = useRef<HTMLDivElement>(null);
@@ -121,9 +142,8 @@ export default function App() {
                     </div>
                 </section>
 
-                {/* Social Icons */}
                 <section className="px-6 py-8">
-                    <div className="grid grid-cols-5 gap-4">
+                    <div className="grid grid-cols-8 gap-4">
                         {SOCIAL_LINKS.map((social, idx) => (
                         <motion.a
                             key={idx}
@@ -162,7 +182,7 @@ export default function App() {
                                         <img src={link.logo} alt={link.title} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
                                     )}
                                 </div>
-                                <div className="flex flex-col gap-2">
+                                <div className="flex flex-col flex-1 justify-start items-start gap-2">
                                     <span className="text-sm">{link.title}</span>
                                     {link.subtitle && <span className="text-xs">{link.subtitle}</span>}
                                 </div>
@@ -192,26 +212,7 @@ export default function App() {
                             dragConstraints={{ right: 0, left: -width }}
                             className="flex gap-4 px-6 pb-4"
                         >
-                            {[
-                                {
-                                    name: 'Mechanical Keyboard',
-                                    desc: 'RGB Backlit, Brown Switches',
-                                    img: IMAGES.keyboard,
-                                    icon: Keyboard
-                                },
-                                {
-                                    name: 'Curved Monitor',
-                                    desc: '34" Ultra-Wide 144Hz',
-                                    img: IMAGES.monitor,
-                                    icon: Monitor
-                                },
-                                {
-                                    name: 'Gaming Mouse',
-                                    desc: 'Lightweight, Wireless Pro',
-                                    img: IMAGES.mouse,
-                                    icon: MousePointer2
-                                }
-                            ].map((item, idx) => (
+                            {SETUP.map((item, idx) => (
                                 <motion.div
                                     key={idx}
                                     className="flex-none w-64 rounded-default bg-slate-800/50 border border-slate-700/50 overflow-hidden pointer-events-none"

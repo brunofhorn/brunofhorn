@@ -24,7 +24,7 @@ import { motion } from 'motion/react';
 
 const IMAGES = {
     hero: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBHUgg4VYEVmF-4TK8J49wn4pakp7P9gPphnwDZpQkAiW0Hhgm1Y6sCi_du9OBDaFVt1nmsI-lgCJCKztVsT6PZoq4LDWgd-WDd8SEPt1KhYxiu1RIbt754U5qQdIKkE2U5w76eXjT8_iIc5riJRwRwt6k_paCTo5meHuqmnTgSFzriETksDlP0z1Pp8smZsah-r4qbkFEjl65i8NvyrQ-FqPO_o2u9rHFWchyBJYmtRF1h92H8tKzlB-83U8tQYATFsOLUB2G4-g4',
-    profile: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDZxdkAaFQd6mYx1Ikg1QEv8pMrQSi2jC7ZIWNMppDVooMsO7_FkXwo7d-FOOTEJw0DvmMn1BhVCP0Fhi3qyrw3qmOiPa30oI2sFHK5L-LxlCh__K4E_PPfE-rrnYWqV7c_uDLPm09ZFGywNLTj5D5tvyfB6nsZNyHIbolayPzWcN2DysfR4gmwKkCO1OYm9HQw3rkbIAuODXqvjhbLQAtcx5y88RO9FN2cWJrYJJyiakEIiYbiSN0y1-apKpGxpHUWDhaTOqxjWk0',
+    profile: 'https://github.com/brunofhorn.png',
     keyboard: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCiS7RViIuScAxO1S5uztK_biFcdleZUv0aEdAMoDEU4UhfQbgeTaULzYMgmbLWqSYg-kbaSrUgSB2GJnCLEJJCDA4PtIZM9ZbAf30Q0FjXXsMdTMKyHfHvBCiPAl1IsLKrj4HhUOfmnW4FKslf3ZZHP_ls_JZRVwfF7KtBRv3J1AZ5Ew1wKkkMS0txa_jQ-6euufwldzylJgcq1dIXo1igsowl_FFQ9ApnW8RTcWseepKzYuhz8tjuBOgCAga5EXNlNkYWaDmJT0w',
     monitor: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCqVKR3bOmXKhZw_zC5OEB_2nJ6p_LWq8SIF8Rh91M_UK-E9MqOShMAhcd1yQyuDajAxEbV-QLBm7p6Zlof0Xq_vgQXeefleTPGolp35I28wpDnv1JNbFEFvCW76hfZ0qQePQ_95nF2u5bjTApRcr64GA4e4bT85GpyuTaJp0HG1tM9DpOOMvtGE80d-D_I1LxGtSrRTnRXLyJ-xTqFSnlryaOKKpPd2LN55IN7S7IXoIx-OPnlpinBi3zGyN_KT_XP7ApILWDlu-8',
     mouse: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCCK5FhkW1kS3tpNo1tawfeyQ7TRc7ARTNM2-Srwtp4wfHarD6bR1QuR4k6uaG_b_FibZWuHXbI_qlKaqJyyyUtABDQy2wB3AjBHaUB1sR46X49sZY8nskdkxs1GKwxu7-hfjPwOmNAAwjNV8_BoXmh_6-E_gmtuZ-pGm4C5rmQE2Dt0un2FOXc6uhGp7MIkkusu8OoJfiJ-v67ylFRjVpvw3ThEfLdepx0dxz7ZkNwmXuE-38ZD_bXxUqDrckH20OtstN0AD0JvY8',
@@ -74,20 +74,8 @@ export default function App() {
 
     return (
         <div className="min-h-screen bg-[#161022] text-slate-100 font-sans selection:bg-indigo-500/30">
-            <div className="max-w-[480px] mx-auto bg-[#161022] min-h-screen shadow-2xl relative flex flex-col">
+            <div className="max-w-120 mx-auto bg-[#161022] min-h-screen shadow-2xl relative flex flex-col">
 
-                {/* Top Navigation */}
-                <header className="sticky top-0 z-50 bg-[#161022]/80 backdrop-blur-md px-4 py-3 flex items-center justify-between">
-                    <button className="p-2 hover:bg-white/10 rounded-default transition-colors">
-                        <ArrowLeft className="w-5 h-5" />
-                    </button>
-                    <h2 className="text-sm font-bold tracking-tight">@joaosilva</h2>
-                    <button className="p-2 bg-primary/20 text-primary hover:bg-primary/30 rounded-default transition-colors">
-                        <Share2 className="w-5 h-5" />
-                    </button>
-                </header>
-
-                {/* Hero Section */}
                 <section className="relative h-40 overflow-hidden">
                     <img
                         src={IMAGES.hero}
@@ -95,10 +83,9 @@ export default function App() {
                         className="w-full h-full object-cover opacity-60"
                         referrerPolicy="no-referrer"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#161022]" />
+                    <div className="absolute inset-0 bg-linear-to-b from-transparent to-[#161022]" />
                 </section>
 
-                {/* Profile Info */}
                 <section className="flex flex-col items-center -mt-16 px-6 relative z-10">
                     <motion.div
                         initial={{ scale: 0.8, opacity: 0 }}
@@ -107,16 +94,16 @@ export default function App() {
                     >
                         <img
                             src={IMAGES.profile}
-                            alt="João Silva"
+                            alt="Bruno Fernandes Horn"
                             className="w-full h-full object-cover"
                             referrerPolicy="no-referrer"
                         />
                     </motion.div>
 
                     <div className="mt-4 text-center">
-                        <h1 className="text-2xl font-bold tracking-tight">João Silva</h1>
-                        <p className="text-primary font-bold text-xs mt-1 uppercase tracking-[0.2em]">Content Creator</p>
-                        <p className="text-slate-400 text-sm mt-3 leading-relaxed max-w-[300px] mx-auto">
+                        <h1 className="text-2xl font-bold tracking-tight">Bruno Fernandes Horn</h1>
+                        <p className="text-primary font-bold text-xs mt-1 uppercase tracking-[0.2em]">Criador de Conteúdo</p>
+                        <p className="text-slate-400 text-sm mt-3 leading-relaxed max-w-75 mx-auto">
                             Tech Enthusiast | Gamer | Content Creator sharing the best of the digital world.
                         </p>
                     </div>

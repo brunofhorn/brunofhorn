@@ -12,8 +12,7 @@ import {
   PlayCircle,
 } from 'lucide-react';
 import { motion } from 'motion/react';
-import { Link } from 'react-router-dom';
-import { PiBookDuotone, PiBoxArrowUpDuotone, PiComputerTowerDuotone, PiEnvelopeDuotone, PiFacebookLogoDuotone, PiGithubLogoDuotone, PiHardDriveDuotone, PiHeadsetDuotone, PiInstagramLogoDuotone, PiKeyboardDuotone, PiLinkedinLogoDuotone, PiMonitorDuotone, PiMouseDuotone, PiPinterestLogoDuotone, PiSnapchatLogoDuotone, PiThreadsLogoDuotone, PiTiktokLogoDuotone, PiTwitterLogoDuotone, PiVideoCameraDuotone, PiYoutubeLogoDuotone } from 'react-icons/pi';
+import { PiBookDuotone, PiBoxArrowUpDuotone, PiComputerTowerDuotone, PiEnvelopeDuotone, PiFacebookLogoDuotone, PiFanDuotone, PiGithubLogoDuotone, PiHardDriveDuotone, PiHeadsetDuotone, PiInstagramLogoDuotone, PiKeyboardDuotone, PiLinkedinLogoDuotone, PiMicrophoneDuotone, PiMonitorDuotone, PiMouseDuotone, PiPinterestLogoDuotone, PiSnapchatLogoDuotone, PiThreadsLogoDuotone, PiTiktokLogoDuotone, PiTwitterLogoDuotone, PiUserSoundDuotone, PiVideo, PiVideoCameraDuotone, PiYoutubeLogoDuotone } from 'react-icons/pi';
 import { trackClick, trackGoal, trackPing, trackSession, trackView } from '../lib/api';
 import monitorImg from '../assets/img/monitor-lg-ultra-gear.jpg';
 import keyboardImg from '../assets/img/teclado-redragon-ucal-pro.jpg';
@@ -22,7 +21,12 @@ import suportHeadsetImg from '../assets/img/suporte-headset-gaming-xtrust.jpg';
 import gabineteNebulaImg from '../assets/img/gabinete-superframe-nebula.jpg';
 import fonteImg from '../assets/img/fonte-msi-mag.jpg';
 import ssdKingstonImg from '../assets/img/ssd-kingston-sata-3.jpg';
-
+import geForceRtx5060Img from '../assets/img/placa-video-asus-atlas-shark-rtx-5060.jpg';
+import waterCoolerImg from '../assets/img/water-cooler-ninja-yuki.jpg';
+import placaMaeImg from '../assets/img/placa-mae-asus.jpg';
+import processadorImg from '../assets/img/processador-intel-core-i7.jpg';
+import microfoneImg from '../assets/img/microfone-hyperx-quadcast.jpg';
+import somImg from '../assets/img/caixa-som-rgb.jpg';
 
 const IMAGES = {
     hero: 'https://picsum.photos/seed/programming/1920/1080?blur=2',
@@ -34,6 +38,12 @@ const IMAGES = {
     gabinete: gabineteNebulaImg,
     fonte: fonteImg,
     ssd: ssdKingstonImg,
+    video: geForceRtx5060Img,
+    cooler: waterCoolerImg,
+    mae: placaMaeImg,
+    processador: processadorImg,
+    microfone: microfoneImg,
+    som: somImg,
     rocketseat: 'https://github.com/Rocketseat.png'
 };
 
@@ -120,6 +130,20 @@ const SETUP = [
         link: 'https://amzn.to/4cLL7gF',
     },
     {
+        name: 'Microfone HyperX Quadcast',
+        desc: 'RGB / Antivibração',
+        img: IMAGES.microfone,
+        icon: PiMicrophoneDuotone,
+        link: 'https://amzn.to/4tU7bvE',
+    },
+    {
+        name: 'Caixa de Som GT-X990 Rainbow',
+        desc: 'RGB / Efeitos de LED',
+        img: IMAGES.som,
+        icon: PiUserSoundDuotone,
+        link: 'https://s.shopee.com.br/8fN9oPzNRF',
+    },
+    {
         name: 'Gabinete Superframe Nebula',
         desc: 'Mid Tower / 3 fans RGB / Padrão aquário',
         img: IMAGES.gabinete,
@@ -142,31 +166,31 @@ const SETUP = [
     },
     {
         name: 'Placa de Vídeo GeForce RTX 5060',
-        desc: 'Asus Atlas Shark / 8GB / GDDR7 / DLSS / Ray Tracing',
-        img: IMAGES.headsetSupport,
-        icon: PiComputerTowerDuotone,
-        link: '',
+        desc: '8GB / GDDR7 / DLSS / Ray Tracing',
+        img: IMAGES.video,
+        icon: PiVideo,
+        link: 'https://amzn.to/4b7lIgf',
     },
     {
         name: 'Water Cooler Gamer Ninja Yuki',
-        desc: 'ARGB / 240mm / Intel-AMD / Controladora',
-        img: IMAGES.headsetSupport,
-        icon: PiComputerTowerDuotone,
-        link: '',
+        desc: 'ARGB / 240mm / Controladora',
+        img: IMAGES.cooler,
+        icon: PiFanDuotone,
+        link: 'https://amzn.to/4rzKzzj',
     },
     {
-        name: 'Placa Mãe Asus B760M-AYW WIFI D4 II',
+        name: 'Placa Mãe Asus B760M-AYW',
         desc: 'Chipset B760 / Intel LGA 1700 / DDR4',
-        img: IMAGES.headsetSupport,
+        img: IMAGES.mae,
         icon: PiComputerTowerDuotone,
-        link: '',
+        link: 'https://amzn.to/4kPUJck',
     },
     {
         name: 'Processador Intel Core i7 14700K',
-        desc: '3.4 GHz (5.6GHz Turbo) / 14ª Geração / 20-Cores 28-Threads',
-        img: IMAGES.headsetSupport,
-        icon: PiComputerTowerDuotone,
-        link: '',
+        desc: '3.4 GHz (5.6GHz OC) / 20 Cores',
+        img: IMAGES.processador,
+        icon: PiBoxArrowUpDuotone,
+        link: 'https://amzn.to/4qU2500',
     },
 ]
 
@@ -438,19 +462,18 @@ export default function Home() {
                             <div className="w-12 h-12 rounded-default bg-primary flex items-center justify-center text-white shadow-xl shadow-primary/40 mb-4">
                                 <FileText className="w-6 h-6" />
                             </div>
-                            <h3 className="text-lg font-bold">Media Kit 2026</h3>
+                            <h3 className="text-lg font-bold">Mídia Kit 2026</h3>
                             <p className="text-slate-400 text-sm mt-2 max-w-[240px]">
-                                Looking to collaborate? Download my latest stats, audience demographics, and brand partnership details.
+                                Buscando uma collab? Veja minhas estatísticas, demográfico de audiência, e detalhes de parcerias com marcas.
                             </p>
                             <motion.button
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                className="mt-6 px-8 py-3 bg-primary rounded-default text-sm font-bold text-white flex items-center gap-2 shadow-lg shadow-primary/30"
+                                className="mt-6 px-8 py-3 cursor-pointer bg-primary rounded-default text-sm font-bold text-white flex items-center gap-2 shadow-lg shadow-primary/30"
                             >
-                                View Media Kit <ExternalLink className="w-4 h-4" />
+                                Ver Mídia Kit <ExternalLink className="w-4 h-4" />
                             </motion.button>
                         </div>
-                        {/* Decorative Blobs */}
                         <div className="absolute -top-10 -right-10 w-32 h-32 bg-primary/10 blur-3xl rounded-full" />
                         <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-primary/5 blur-3xl rounded-full" />
                     </div>
@@ -458,20 +481,7 @@ export default function Home() {
 
                 {/* Footer */}
                 <footer className="mt-auto p-10 text-center border-t border-slate-800/50">
-                    <p className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em]">Created with passion by Bruno Fernandes Horn</p>
-                    <div className="mt-6 flex justify-center gap-6 text-slate-600">
-                        <ShieldCheck className="w-5 h-5" />
-                        <Globe className="w-5 h-5" />
-                        <Lock className="w-5 h-5" />
-                    </div>
-                    <div className="mt-6 flex justify-center gap-4 text-sm">
-                        <Link className="underline text-slate-300" to="/login">
-                            Login
-                        </Link>
-                        <Link className="underline text-slate-300" to="/dashboard">
-                            Dashboard
-                        </Link>
-                    </div>
+                    <p className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em]">Criado por Bruno Fernandes Horn</p>
                 </footer>
             </div>
 

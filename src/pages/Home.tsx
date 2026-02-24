@@ -12,16 +12,28 @@ import {
   PlayCircle,
 } from 'lucide-react';
 import { motion } from 'motion/react';
-import { PiBookDuotone, PiEnvelopeDuotone, PiFacebookLogoDuotone, PiGithubLogoDuotone, PiInstagramLogoDuotone, PiKeyboardDuotone, PiLinkedinLogoDuotone, PiMonitorDuotone, PiPinterestLogoDuotone, PiSnapchatLogoDuotone, PiThreadsLogoDuotone, PiTiktokLogoDuotone, PiTwitterLogoDuotone, PiVideoCameraDuotone, PiYoutubeLogoDuotone } from 'react-icons/pi';
-import monitorImg from './assets/img/monitor-lg-ultra-gear.jpg';
-import keyboardImg from './assets/img/teclado-redragon-ucal-pro.jpg';
+import { Link } from 'react-router-dom';
+import { PiBookDuotone, PiBoxArrowUpDuotone, PiComputerTowerDuotone, PiEnvelopeDuotone, PiFacebookLogoDuotone, PiGithubLogoDuotone, PiHardDriveDuotone, PiHeadsetDuotone, PiInstagramLogoDuotone, PiKeyboardDuotone, PiLinkedinLogoDuotone, PiMonitorDuotone, PiMouseDuotone, PiPinterestLogoDuotone, PiSnapchatLogoDuotone, PiThreadsLogoDuotone, PiTiktokLogoDuotone, PiTwitterLogoDuotone, PiVideoCameraDuotone, PiYoutubeLogoDuotone } from 'react-icons/pi';
+import { trackClick, trackGoal, trackPing, trackSession, trackView } from '../lib/api';
+import monitorImg from '../assets/img/monitor-lg-ultra-gear.jpg';
+import keyboardImg from '../assets/img/teclado-redragon-ucal-pro.jpg';
+import mouseImg from '../assets/img/mouse-attack-shark-x11.jpg';
+import suportHeadsetImg from '../assets/img/suporte-headset-gaming-xtrust.jpg';
+import gabineteNebulaImg from '../assets/img/gabinete-superframe-nebula.jpg';
+import fonteImg from '../assets/img/fonte-msi-mag.jpg';
+import ssdKingstonImg from '../assets/img/ssd-kingston-sata-3.jpg';
+
 
 const IMAGES = {
     hero: 'https://picsum.photos/seed/programming/1920/1080?blur=2',
     profile: 'https://github.com/brunofhorn.png',
     keyboard: keyboardImg,
     monitor: monitorImg,
-    mouse: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCCK5FhkW1kS3tpNo1tawfeyQ7TRc7ARTNM2-Srwtp4wfHarD6bR1QuR4k6uaG_b_FibZWuHXbI_qlKaqJyyyUtABDQy2wB3AjBHaUB1sR46X49sZY8nskdkxs1GKwxu7-hfjPwOmNAAwjNV8_BoXmh_6-E_gmtuZ-pGm4C5rmQE2Dt0un2FOXc6uhGp7MIkkusu8OoJfiJ-v67ylFRjVpvw3ThEfLdepx0dxz7ZkNwmXuE-38ZD_bXxUqDrckH20OtstN0AD0JvY8',
+    mouse: mouseImg,
+    headsetSupport: suportHeadsetImg,
+    gabinete: gabineteNebulaImg,
+    fonte: fonteImg,
+    ssd: ssdKingstonImg,
     rocketseat: 'https://github.com/Rocketseat.png'
 };
 
@@ -30,17 +42,19 @@ const LINKS = [
         title: 'Junte-se à Rocketseat',
         subtitle: 'Comece ou evolua sua carreira em programação com um desconto especial.',
         logo: IMAGES.rocketseat,
-        color: 'bg-slate-800',
-        textColor: 'text-slate-100',
-        shadow: ''
+        color: 'bg-primary',
+        textColor: 'text-white',
+        shadow: '',
+        link: 'https://www.rocketseat.com.br/oferta/influencer/v2/bruno'
     },
     {
         title: 'Leituras de 2026',
         subtitle: 'Lista com todos livros e HQs que li em 2026.',
         icon: PiBookDuotone,
-        color: 'bg-primary',
-        textColor: 'text-white',
-        shadow: 'shadow-primary/20'
+        color: 'bg-slate-800',
+        textColor: 'text-slate-100',
+        shadow: '',
+        link: 'https://amzn.to/4bDBTCV'
     },
     {
         title: 'GitHub - brunofhorn/brev.ly',
@@ -48,7 +62,8 @@ const LINKS = [
         icon: PiGithubLogoDuotone,
         color: 'bg-slate-800',
         textColor: 'text-slate-100',
-        shadow: ''
+        shadow: '',
+        link: 'https://github.com/brunofhorn/brev.ly'
     },
     {
         title: 'Parcerias?',
@@ -56,7 +71,8 @@ const LINKS = [
         icon: PiEnvelopeDuotone,
         color: 'bg-slate-800',
         textColor: 'text-slate-100',
-        shadow: ''
+        shadow: '',
+        link: 'mailto:parcerias@brunofhorn.com.br'
     }
 ];
 
@@ -79,30 +95,174 @@ const SETUP = [
         name: 'Monitor LG Ultra Gear 24"',
         desc: 'IPS / 180Hz / HDR',
         img: IMAGES.monitor,
-        icon: PiMonitorDuotone
+        icon: PiMonitorDuotone,
+        link: 'https://amzn.to/3ZSQcMI',
     },
     {
         name: 'Teclado Redragon UCAL Pro',
         desc: 'Mecânico / Switch Brown / RGB',
         img: IMAGES.keyboard,
-        icon: PiKeyboardDuotone
+        icon: PiKeyboardDuotone,
+        link: 'https://amzn.to/4azu3cz',
     },
     {
-        name: 'Gaming Mouse',
-        desc: 'Lightweight, Wireless Pro',
+        name: 'Mouse Attack Shark X11',
+        desc: 'Tri Mode / Base de Carregamento / RGB',
         img: IMAGES.mouse,
-        icon: MousePointer2
-    }
+        icon: PiMouseDuotone,
+        link: 'https://amzn.to/4kTIE66',
+    },
+    {
+        name: 'Suporte Headset Gaming XTrust',
+        desc: 'HUB USB / RGB',
+        img: IMAGES.headsetSupport,
+        icon: PiHeadsetDuotone,
+        link: 'https://amzn.to/4cLL7gF',
+    },
+    {
+        name: 'Gabinete Superframe Nebula',
+        desc: 'Mid Tower / 3 fans RGB / Padrão aquário',
+        img: IMAGES.gabinete,
+        icon: PiComputerTowerDuotone,
+        link: 'https://amzn.to/46qs089',
+    },
+    {
+        name: 'Fonte MSI MAG 80 Plus Bronze',
+        desc: '650W / PFC Ativo',
+        img: IMAGES.fonte,
+        icon: PiBoxArrowUpDuotone,
+        link: 'https://amzn.to/4rz1XnJ',
+    },
+    {
+        name: 'SSD Kingston 960GB',
+        desc: '6A400 / Sata III / L 500MBs / G 450MBs',
+        img: IMAGES.ssd,
+        icon: PiHardDriveDuotone,
+        link: 'https://amzn.to/3MLnKcw',
+    },
+    {
+        name: 'Placa de Vídeo GeForce RTX 5060',
+        desc: 'Asus Atlas Shark / 8GB / GDDR7 / DLSS / Ray Tracing',
+        img: IMAGES.headsetSupport,
+        icon: PiComputerTowerDuotone,
+        link: '',
+    },
+    {
+        name: 'Water Cooler Gamer Ninja Yuki',
+        desc: 'ARGB / 240mm / Intel-AMD / Controladora',
+        img: IMAGES.headsetSupport,
+        icon: PiComputerTowerDuotone,
+        link: '',
+    },
+    {
+        name: 'Placa Mãe Asus B760M-AYW WIFI D4 II',
+        desc: 'Chipset B760 / Intel LGA 1700 / DDR4',
+        img: IMAGES.headsetSupport,
+        icon: PiComputerTowerDuotone,
+        link: '',
+    },
+    {
+        name: 'Processador Intel Core i7 14700K',
+        desc: '3.4 GHz (5.6GHz Turbo) / 14ª Geração / 20-Cores 28-Threads',
+        img: IMAGES.headsetSupport,
+        icon: PiComputerTowerDuotone,
+        link: '',
+    },
 ]
 
 export default function Home() {
     const [width, setWidth] = useState(0);
     const carousel = useRef<HTMLDivElement>(null);
+    const visitorIdRef = useRef(
+        localStorage.getItem('session:visitorId') ||
+          (typeof crypto !== 'undefined' && crypto.randomUUID
+            ? crypto.randomUUID()
+            : `${Date.now()}-${Math.random().toString(36).slice(2)}`)
+    );
 
+    function sendTracking(action: () => Promise<unknown>) {
+        void action().catch(() => undefined);
+    }
+
+    
+    async function handleLinkCardClick(title: string, url: string) {
+        try {
+            await trackClick({
+                visitorId: visitorIdRef.current,
+                page: 'home',
+                kind: 'link-card',
+                label: title,
+                url,
+            });
+
+            await trackGoal({
+                visitorId: visitorIdRef.current,
+                page: 'home',
+                goal: title,
+                url,
+            });
+        } catch {
+            // Ignore tracking errors and continue navigation.
+        } finally {
+            window.open(url, '_blank', 'noopener,noreferrer');
+        }
+    }
+    async function handleSetupBuyClick(itemName: string, url: string) {
+        try {
+            await trackClick({
+                visitorId: visitorIdRef.current,
+                page: 'home',
+                kind: 'setup',
+                label: itemName,
+                url,
+            });
+            await trackGoal({
+                visitorId: visitorIdRef.current,
+                page: 'home',
+                goal: `buy:${itemName}`,
+                url,
+            });
+        } catch {
+            // Ignore tracking errors and continue navigation.
+        } finally {
+            window.open(url, '_blank', 'noopener,noreferrer');
+        }
+    }
     useEffect(() => {
+        localStorage.setItem('session:visitorId', visitorIdRef.current);
+
         if (carousel.current) {
             setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth);
         }
+
+        sendTracking(() =>
+            trackSession({
+                visitorId: visitorIdRef.current,
+                page: 'home',
+                userAgent: navigator.userAgent,
+            })
+        );
+
+        sendTracking(() =>
+            trackView({
+                visitorId: visitorIdRef.current,
+                page: 'home',
+                title: document.title,
+                path: window.location.pathname,
+            })
+        );
+
+        const interval = window.setInterval(() => {
+            sendTracking(() =>
+                trackPing({
+                    visitorId: visitorIdRef.current,
+                    page: 'home',
+                    ts: Date.now(),
+                })
+            );
+        }, 30000);
+
+        return () => window.clearInterval(interval);
     }, []);
 
     return (
@@ -137,7 +297,7 @@ export default function Home() {
                         <h1 className="text-2xl font-bold tracking-tight">Bruno Fernandes Horn</h1>
                         <p className="text-primary font-bold text-xs mt-1 uppercase tracking-[0.2em]">Criador de Conteúdo</p>
                         <p className="text-slate-400 text-sm mt-3 leading-relaxed max-w-75 mx-auto">
-                            Tech Enthusiast | Gamer | Content Creator sharing the best of the digital world.
+                            Entusiasta de Tecnologia | Gamer | Leitor compartilhando o melhor do mundo digital.
                         </p>
                     </div>
                 </section>
@@ -150,6 +310,17 @@ export default function Home() {
                             href={social.url}
                             target="_blank"
                             rel="noopener noreferrer"
+                            onClick={() =>
+                                sendTracking(() =>
+                                    trackClick({
+                                        visitorId: visitorIdRef.current,
+                                        page: 'home',
+                                        kind: 'social',
+                                        label: social.label,
+                                        url: social.url,
+                                    })
+                                )
+                            }
                             whileHover={{ scale: 1.1, backgroundColor: 'rgba(32, 64, 149, 0.2)' }}
                             whileTap={{ scale: 0.95 }}
                             className="w-11 h-11 rounded-default bg-slate-800 flex items-center justify-center text-slate-300 transition-colors"
@@ -160,8 +331,8 @@ export default function Home() {
                         ))}
                     </div>
                     <div className="flex justify-center mt-6">
-                        <div className="px-4 py-1.5 rounded-default bg-slate-800/50 border border-slate-700/50">
-                            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">1.2M Followers</span>
+                        <div className="px-4 py-2.5 rounded-lg justify-center items-center flex bg-slate-800/50 border border-slate-700/50">
+                            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">+ 100K seguidores</span>
                         </div>
                     </div>
                 </section>
@@ -170,12 +341,13 @@ export default function Home() {
                     {LINKS.map((link, idx) => (
                         <motion.button
                             key={idx}
+                            onClick={() => void handleLinkCardClick(link.title, link.link)}
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
-                            className={`w-full p-1 py-2.5 pr-5 rounded-default ${link.color} ${link.textColor} font-bold text-left flex items-center justify-between shadow-lg ${link.shadow} group`}
+                            className={`w-full p-2 cursor-pointer rounded-default ${link.color} ${link.textColor} font-bold text-left flex items-center justify-between shadow-lg ${link.shadow} group`}
                         >
                             <div className="flex items-center gap-3 flex-1 min-w-0">
-                                <div className={`w-10 h-10 rounded-default ${link.color === 'bg-primary' ? 'bg-white/20' : 'bg-slate-700'} flex items-center justify-center overflow-hidden`}>
+                                <div className={`w-10 h-10 rounded-lg ${link.color === 'bg-primary' ? 'bg-white/20' : 'bg-slate-700'} flex items-center justify-center overflow-hidden`}>
                                     {link.icon ? (
                                         <link.icon size={20} />
                                     ) : (
@@ -214,7 +386,7 @@ export default function Home() {
                             {SETUP.map((item, idx) => (
                                 <motion.div
                                     key={idx}
-                                    className="flex-none w-64 rounded-default bg-slate-800/50 border border-slate-700/50 overflow-hidden pointer-events-none"
+                                    className="flex-none w-64 rounded-default bg-slate-800/50 border border-slate-700/50 overflow-hidden"
                                 >
                                     <div className="h-40 overflow-hidden">
                                         <img
@@ -222,12 +394,17 @@ export default function Home() {
                                             alt={item.name}
                                             className="w-full h-full object-cover"
                                             referrerPolicy="no-referrer"
+                                            draggable={false}
                                         />
                                     </div>
                                     <div className="p-4">
                                         <h4 className="font-bold text-sm">{item.name}</h4>
                                         <p className="text-xs text-slate-500 mt-1">{item.desc}</p>
-                                        <button className="mt-4 w-full py-2.5 bg-primary rounded-default text-white text-[10px] font-bold flex items-center justify-center gap-2 pointer-events-auto">
+                                        <button
+                                            onPointerDown={(event) => event.stopPropagation()}
+                                            onClick={() => void handleSetupBuyClick(item.name, item.link)}
+                                            className="mt-4 w-full py-2.5 bg-primary rounded-lg cursor-pointer text-white text-[10px] font-bold flex items-center justify-center gap-2 pointer-events-auto"
+                                        >
                                             <ShoppingCart className="w-3.5 h-3.5" />
                                             Clique aqui para Comprar
                                         </button>
@@ -287,6 +464,14 @@ export default function Home() {
                         <Globe className="w-5 h-5" />
                         <Lock className="w-5 h-5" />
                     </div>
+                    <div className="mt-6 flex justify-center gap-4 text-sm">
+                        <Link className="underline text-slate-300" to="/login">
+                            Login
+                        </Link>
+                        <Link className="underline text-slate-300" to="/dashboard">
+                            Dashboard
+                        </Link>
+                    </div>
                 </footer>
             </div>
 
@@ -302,5 +487,10 @@ export default function Home() {
         </div>
     );
 }
+
+
+
+
+
 
 

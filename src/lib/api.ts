@@ -1,4 +1,4 @@
-const DEFAULT_API_BASE_URL = 'https://brunofhorn-backend.vercel.app';
+const DEFAULT_API_BASE_URL = 'https://brunofhorn-backend.onrender.com';
 
 const API_BASE_URL =
   (import.meta.env.VITE_API_BASE_URL as string | undefined)?.trim() || DEFAULT_API_BASE_URL;
@@ -9,14 +9,16 @@ type JsonRecord = Record<string, JsonValue>;
 type RequestOptions = {
   method?: 'GET' | 'POST';
   body?: JsonRecord;
+  token?: string;
 };
 
 async function request<T = unknown>(path: string, options: RequestOptions = {}): Promise<T> {
-  const { method = 'GET', body } = options;
+  const { method = 'GET', body, token } = options;
   const response = await fetch(`${API_BASE_URL}${path}`, {
     method,
     headers: {
       'Content-Type': 'application/json',
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
     },
     body: body ? JSON.stringify(body) : undefined,
   });
@@ -46,8 +48,8 @@ export function login(payload: JsonRecord) {
   return request('/api/auth/login', { method: 'POST', body: payload });
 }
 
-export function logout(payload: JsonRecord = {}) {
-  return request('/api/auth/logout', { method: 'POST', body: payload });
+export function logout(token?: string, payload: JsonRecord = {}) {
+  return request('/api/auth/logout', { method: 'POST', body: payload, token });
 }
 
 export function trackGoal(payload: JsonRecord) {
@@ -70,6 +72,6 @@ export function trackClick(payload: JsonRecord) {
   return request('/api/track/click', { method: 'POST', body: payload });
 }
 
-export function getStatsSummary() {
-  return request('/api/stats/summary');
+export function getStatsSummary(token?: string) {
+  return request('/api/stats/summary', { token });
 }

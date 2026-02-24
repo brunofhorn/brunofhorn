@@ -231,6 +231,31 @@ export default function Home() {
             window.open(url, '_blank', 'noopener,noreferrer');
         }
     }
+
+    async function handleMediaKitClick() {
+        const url = 'https://beacons.ai/brunofhorn/mediakit';
+
+        try {
+            await trackClick({
+                visitorId: visitorIdRef.current,
+                page: 'home',
+                kind: 'media-kit',
+                label: 'Midia Kit 2026',
+                url,
+            });
+
+            await trackGoal({
+                visitorId: visitorIdRef.current,
+                page: 'home',
+                goal: 'media-kit',
+                url,
+            });
+        } catch {
+            // Ignore tracking errors and continue navigation.
+        } finally {
+            window.open(url, '_blank', 'noopener,noreferrer');
+        }
+    }
     async function handleSetupBuyClick(itemName: string, url: string) {
         try {
             await trackClick({
@@ -457,16 +482,17 @@ export default function Home() {
                 </section>
 
                 <section className="px-6 pb-8">
-                    <div className="relative overflow-hidden rounded-default bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/20 p-8 text-center">
+                    <div className="relative overflow-hidden rounded-default bg-linear-to-br from-primary/20 to-primary/5 border border-primary/20 p-8 text-center">
                         <div className="relative z-10 flex flex-col items-center">
                             <div className="w-12 h-12 rounded-default bg-primary flex items-center justify-center text-white shadow-xl shadow-primary/40 mb-4">
                                 <FileText className="w-6 h-6" />
                             </div>
                             <h3 className="text-lg font-bold">Mídia Kit 2026</h3>
-                            <p className="text-slate-400 text-sm mt-2 max-w-[240px]">
+                            <p className="text-slate-400 text-sm mt-2 max-w-60">
                                 Buscando uma collab? Veja minhas estatísticas, demográfico de audiência, e detalhes de parcerias com marcas.
                             </p>
                             <motion.button
+                                onClick={() => void handleMediaKitClick()}
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                                 className="mt-6 px-8 py-3 cursor-pointer bg-primary rounded-default text-sm font-bold text-white flex items-center gap-2 shadow-lg shadow-primary/30"
@@ -497,6 +523,7 @@ export default function Home() {
         </div>
     );
 }
+
 
 
 

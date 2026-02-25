@@ -52,37 +52,33 @@ const LINKS = [
         title: 'Junte-se à Rocketseat',
         subtitle: 'Comece ou evolua sua carreira em programação com um desconto especial.',
         logo: IMAGES.rocketseat,
-        color: 'bg-primary',
-        textColor: 'text-white',
         shadow: '',
-        link: 'https://www.rocketseat.com.br/oferta/influencer/v2/bruno'
+        link: 'https://www.rocketseat.com.br/oferta/influencer/v2/bruno',
+        featured: true
     },
     {
         title: 'Leituras de 2026',
         subtitle: 'Lista com todos livros e HQs que li em 2026.',
         icon: PiBookDuotone,
-        color: 'bg-slate-800',
-        textColor: 'text-slate-100',
         shadow: '',
-        link: 'https://amzn.to/4bDBTCV'
+        link: 'https://amzn.to/4bDBTCV',
+        featured: false
     },
     {
         title: 'GitHub - brunofhorn/brev.ly',
         subtitle: 'Dá uma olhada no projeto Brev.ly da pós.',
         icon: PiGithubLogoDuotone,
-        color: 'bg-slate-800',
-        textColor: 'text-slate-100',
         shadow: '',
-        link: 'https://github.com/brunofhorn/brev.ly'
+        link: 'https://github.com/brunofhorn/brev.ly',
+        featured: false
     },
     {
         title: 'Parcerias?',
         subtitle: 'parcerias@brunofhorn.com.br',
         icon: PiEnvelopeDuotone,
-        color: 'bg-slate-800',
-        textColor: 'text-slate-100',
         shadow: '',
-        link: 'mailto:parcerias@brunofhorn.com.br'
+        link: 'mailto:parcerias@brunofhorn.com.br',
+        featured: false
     }
 ];
 
@@ -315,7 +311,7 @@ export default function Home() {
     }, []);
 
     return (
-        <div className="min-h-screen bg-[#161022] text-slate-100 font-sans selection:bg-indigo-500/30">
+        <div className="min-h-screen bg-[#161022] text-slate-100 font-['Poppins'] selection:bg-indigo-500/30">
             <div className="max-w-120 mx-auto bg-[#161022] min-h-screen shadow-2xl relative flex flex-col">
 
                 <section className="relative h-48 overflow-hidden">
@@ -325,7 +321,7 @@ export default function Home() {
                     className="w-full h-full object-cover opacity-40"
                     referrerPolicy="no-referrer"
                 />
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#161022]/20 to-[#161022]" />
+                <div className="absolute inset-0 bg-linear-to-b from-transparent via-[#161022]/20 to-[#161022]" />
                 </section>
 
                 <section className="flex flex-col items-center -mt-16 px-6 relative z-10">
@@ -345,7 +341,7 @@ export default function Home() {
                     <div className="mt-4 text-center">
                         <h1 className="text-2xl font-bold tracking-tight">Bruno Fernandes Horn</h1>
                         <p className="text-primary font-bold text-xs mt-1 uppercase tracking-[0.2em]">Criador de Conteúdo</p>
-                        <p className="text-slate-400 text-sm mt-3 leading-relaxed max-w-75 mx-auto">
+                        <p className="text-slate-400 text-xs mt-3 leading-relaxed max-w-75 mx-auto">
                             Entusiasta de Tecnologia | Gamer | Leitor compartilhando o melhor do mundo digital.
                         </p>
                     </div>
@@ -393,10 +389,10 @@ export default function Home() {
                             onClick={() => void handleLinkCardClick(link.title, link.link)}
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
-                            className={`w-full p-2 cursor-pointer rounded-default ${link.color} ${link.textColor} font-bold text-left flex items-center justify-between shadow-lg ${link.shadow} group`}
+                            className={`w-full p-2 cursor-pointer rounded-default ${link.featured ? "text-white bg-primary":"text-slate-100 bg-slate-800"} font-bold text-left flex items-center justify-between shadow-lg ${link.shadow} group`}
                         >
                             <div className="flex items-center gap-3 flex-1 min-w-0">
-                                <div className={`w-10 h-10 rounded-lg ${link.color === 'bg-primary' ? 'bg-white/20' : 'bg-slate-700'} flex items-center justify-center overflow-hidden`}>
+                                <div className={`w-10 h-10 rounded-lg ${link.featured ? 'bg-white/20' : 'bg-slate-700'} flex items-center justify-center overflow-hidden`}>
                                     {link.icon ? (
                                         <link.icon size={20} />
                                     ) : (
@@ -405,7 +401,7 @@ export default function Home() {
                                 </div>
                                 <div className="flex flex-col flex-1 min-w-0 justify-start items-start gap-0.5 text-left">
                                     <span className="text-sm text-left leading-tight">{link.title}</span>
-                                    {link.subtitle && <span className="text-xs text-left leading-snug">{link.subtitle}</span>}
+                                    {link.subtitle && <span className={`text-xs text-left leading-snug ${link.featured ? "text-white/60" : "text-slate-500"}`}>{link.subtitle}</span>}
                                 </div>
                             </div>
                             <ChevronRight className="ml-3 w-4 h-4 shrink-0 opacity-50 group-hover:opacity-100 transition-opacity" />
@@ -447,12 +443,12 @@ export default function Home() {
                                         />
                                     </div>
                                     <div className="p-4">
-                                        <h4 className="font-bold text-sm">{item.name}</h4>
-                                        <p className="text-xs text-slate-500 mt-1">{item.desc}</p>
+                                        <h4 className="font-bold text-xs">{item.name}</h4>
+                                        <p className="text-xs text-slate-500 mt-1 text-[11px]">{item.desc}</p>
                                         <button
                                             onPointerDown={(event) => event.stopPropagation()}
                                             onClick={() => void handleSetupBuyClick(item.name, item.link)}
-                                            className="mt-4 w-full py-2.5 bg-primary rounded-lg cursor-pointer text-white text-[10px] font-bold flex items-center justify-center gap-2 pointer-events-auto"
+                                            className="mt-4 w-full py-2.5 bg-primary rounded-lg cursor-pointer text-white text-xs! font-bold flex items-center justify-center gap-2 pointer-events-auto"
                                         >
                                             <ShoppingCart className="w-3.5 h-3.5" />
                                             Clique aqui para Comprar

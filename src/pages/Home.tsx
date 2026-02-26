@@ -468,7 +468,7 @@ export default function Home() {
                     <div className="aspect-video rounded-default overflow-hidden border border-slate-800 shadow-2xl bg-black">
                         <iframe
                             className="w-full h-full"
-                            src="https://www.youtube.com/embed/c2BmYRoXPKc?si=oFj8x_N_8HAaSADJ"
+                            src="https://www.youtube.com/embed/Zt4Vm737xkA?si=p0Y0pRzh4Da2-fcK"
                             title="Aprenda CSS Jogando"
                             frameBorder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

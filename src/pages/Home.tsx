@@ -204,16 +204,15 @@ export default function Home() {
         void action().catch(() => undefined);
     }
 
-    
-    function handleLinkCardClick(title: string, url: string) {
+    function openThenTrack(kind: string, label: string, goal: string, url: string) {
         window.open(url, '_blank', 'noopener,noreferrer');
 
         sendTracking(() =>
             trackClick({
                 visitorId: visitorIdRef.current,
                 page: 'home',
-                kind: 'link-card',
-                label: title,
+                kind,
+                label,
                 url,
             })
         );
@@ -222,57 +221,25 @@ export default function Home() {
             trackGoal({
                 visitorId: visitorIdRef.current,
                 page: 'home',
-                goal: title,
+                goal,
                 url,
             })
         );
+    }
+
+    function handleLinkCardClick(title: string, url: string) {
+        openThenTrack('link-card', title, title, url);
     }
 
     function handleMediaKitClick() {
         const url = 'https://beacons.ai/brunofhorn/mediakit';
-        window.open(url, '_blank', 'noopener,noreferrer');
-
-        sendTracking(() =>
-            trackClick({
-                visitorId: visitorIdRef.current,
-                page: 'home',
-                kind: 'media-kit',
-                label: 'Midia Kit 2026',
-                url,
-            })
-        );
-
-        sendTracking(() =>
-            trackGoal({
-                visitorId: visitorIdRef.current,
-                page: 'home',
-                goal: 'media-kit',
-                url,
-            })
-        );
+        openThenTrack('media-kit', 'Midia Kit 2026', 'media-kit', url);
     }
+
     function handleSetupBuyClick(itemName: string, url: string) {
-        window.open(url, '_blank', 'noopener,noreferrer');
-
-        sendTracking(() =>
-            trackClick({
-                visitorId: visitorIdRef.current,
-                page: 'home',
-                kind: 'setup',
-                label: itemName,
-                url,
-            })
-        );
-
-        sendTracking(() =>
-            trackGoal({
-                visitorId: visitorIdRef.current,
-                page: 'home',
-                goal: `buy:${itemName}`,
-                url,
-            })
-        );
+        openThenTrack('setup', itemName, `buy:${itemName}`, url);
     }
+    
     useEffect(() => {
         localStorage.setItem('session:visitorId', visitorIdRef.current);
 
@@ -355,17 +322,10 @@ export default function Home() {
                             href={social.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            onClick={() =>
-                                sendTracking(() =>
-                                    trackClick({
-                                        visitorId: visitorIdRef.current,
-                                        page: 'home',
-                                        kind: 'social',
-                                        label: social.label,
-                                        url: social.url,
-                                    })
-                                )
-                            }
+                            onClick={(event) => {
+                                event.preventDefault();
+                                openThenTrack('social', social.label, `social:${social.label}`, social.url);
+                            }}
                             whileHover={{ scale: 1.1, backgroundColor: 'rgba(32, 64, 149, 0.2)' }}
                             whileTap={{ scale: 0.95 }}
                             className="w-11 h-11 rounded-default bg-slate-800 flex items-center justify-center text-slate-300 transition-colors"

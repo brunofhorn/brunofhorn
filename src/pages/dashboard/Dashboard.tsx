@@ -96,7 +96,11 @@ function extractRankedList(payload: unknown): RankedItem[] {
   const source = Array.isArray(payload)
     ? payload
     : payload && typeof payload === 'object'
-      ? ((payload as Record<string, unknown>).items ?? (payload as Record<string, unknown>).data)
+      ? (
+          (payload as Record<string, unknown>).rows ??
+          (payload as Record<string, unknown>).items ??
+          (payload as Record<string, unknown>).data
+        )
       : [];
 
   if (!Array.isArray(source)) return [];
@@ -108,6 +112,8 @@ function extractRankedList(payload: unknown): RankedItem[] {
       const name =
         (typeof obj.name === 'string' && obj.name) ||
         (typeof obj.city === 'string' && obj.city) ||
+        (typeof obj.item === 'string' && obj.item) ||
+        (typeof obj.path === 'string' && obj.path) ||
         (typeof obj.label === 'string' && obj.label) ||
         (typeof obj.url === 'string' && obj.url) ||
         (typeof obj.element_text === 'string' && obj.element_text) ||
@@ -119,6 +125,7 @@ function extractRankedList(payload: unknown): RankedItem[] {
         (typeof obj.count === 'number' && obj.count) ||
         (typeof obj.clicks === 'number' && obj.clicks) ||
         (typeof obj.sessions === 'number' && obj.sessions) ||
+        (typeof obj.views === 'number' && obj.views) ||
         0;
 
       return { name, value };
@@ -127,10 +134,23 @@ function extractRankedList(payload: unknown): RankedItem[] {
 }
 
 function extractTimeseries(payload: unknown): TimeseriesPoint[] {
+  if (payload && typeof payload === 'object' && !Array.isArray(payload)) {
+    const one = payload as Record<string, unknown>;
+    if (typeof one.avgDuration === 'number') {
+      const label =
+        (typeof one.from === 'string' && one.from) ||
+        (typeof one.period === 'string' && one.period) ||
+        'Período';
+      return [{ label, sessions: one.avgDuration, clicks: 0 }];
+    }
+  }
+
   const source = Array.isArray(payload)
     ? payload
     : payload && typeof payload === 'object'
-      ? ((payload as Record<string, unknown>).items ??
+      ? ((payload as Record<string, unknown>).points ??
+          (payload as Record<string, unknown>).rows ??
+          (payload as Record<string, unknown>).items ??
           (payload as Record<string, unknown>).data ??
           (payload as Record<string, unknown>).series)
       : [];
@@ -395,19 +415,6 @@ export function Dashboard() {
           topSetupItems: extractRankedList(setupRes),
         });
 
-        console.log({
-          baseAccesses: pickFirstNumber(baseRes),
-          buttonClicks: pickFirstNumber(clicksRes),
-          topDevice,
-          topDeviceSessions,
-          timeseries: extractTimeseries(timeseriesRes),
-          sessionDuration: extractTimeseries(sessionDurationRes),
-          pages: extractRankedList(pagesRes),
-          devices: extractRankedList(devicesRes),
-          cities: extractRankedList(citiesRes),
-          topLinks: extractRankedList(linksRes),
-          topSetupItems: extractRankedList(setupRes),
-        })
       } catch (err) {
         const message = err instanceof Error ? err.message : '';
         if (message.toLowerCase().includes('unauthorized') || message.includes('401')) {

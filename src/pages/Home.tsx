@@ -205,73 +205,73 @@ export default function Home() {
     }
 
     
-    async function handleLinkCardClick(title: string, url: string) {
-        try {
-            await trackClick({
+    function handleLinkCardClick(title: string, url: string) {
+        window.open(url, '_blank', 'noopener,noreferrer');
+
+        sendTracking(() =>
+            trackClick({
                 visitorId: visitorIdRef.current,
                 page: 'home',
                 kind: 'link-card',
                 label: title,
                 url,
-            });
+            })
+        );
 
-            await trackGoal({
+        sendTracking(() =>
+            trackGoal({
                 visitorId: visitorIdRef.current,
                 page: 'home',
                 goal: title,
                 url,
-            });
-        } catch {
-            // Ignore tracking errors and continue navigation.
-        } finally {
-            window.open(url, '_blank', 'noopener,noreferrer');
-        }
+            })
+        );
     }
 
-    async function handleMediaKitClick() {
+    function handleMediaKitClick() {
         const url = 'https://beacons.ai/brunofhorn/mediakit';
+        window.open(url, '_blank', 'noopener,noreferrer');
 
-        try {
-            await trackClick({
+        sendTracking(() =>
+            trackClick({
                 visitorId: visitorIdRef.current,
                 page: 'home',
                 kind: 'media-kit',
                 label: 'Midia Kit 2026',
                 url,
-            });
+            })
+        );
 
-            await trackGoal({
+        sendTracking(() =>
+            trackGoal({
                 visitorId: visitorIdRef.current,
                 page: 'home',
                 goal: 'media-kit',
                 url,
-            });
-        } catch {
-            // Ignore tracking errors and continue navigation.
-        } finally {
-            window.open(url, '_blank', 'noopener,noreferrer');
-        }
+            })
+        );
     }
-    async function handleSetupBuyClick(itemName: string, url: string) {
-        try {
-            await trackClick({
+    function handleSetupBuyClick(itemName: string, url: string) {
+        window.open(url, '_blank', 'noopener,noreferrer');
+
+        sendTracking(() =>
+            trackClick({
                 visitorId: visitorIdRef.current,
                 page: 'home',
                 kind: 'setup',
                 label: itemName,
                 url,
-            });
-            await trackGoal({
+            })
+        );
+
+        sendTracking(() =>
+            trackGoal({
                 visitorId: visitorIdRef.current,
                 page: 'home',
                 goal: `buy:${itemName}`,
                 url,
-            });
-        } catch {
-            // Ignore tracking errors and continue navigation.
-        } finally {
-            window.open(url, '_blank', 'noopener,noreferrer');
-        }
+            })
+        );
     }
     useEffect(() => {
         localStorage.setItem('session:visitorId', visitorIdRef.current);

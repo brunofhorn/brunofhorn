@@ -394,6 +394,20 @@ export function Dashboard() {
           topLinks: extractRankedList(linksRes),
           topSetupItems: extractRankedList(setupRes),
         });
+
+        console.log({
+          baseAccesses: pickFirstNumber(baseRes),
+          buttonClicks: pickFirstNumber(clicksRes),
+          topDevice,
+          topDeviceSessions,
+          timeseries: extractTimeseries(timeseriesRes),
+          sessionDuration: extractTimeseries(sessionDurationRes),
+          pages: extractRankedList(pagesRes),
+          devices: extractRankedList(devicesRes),
+          cities: extractRankedList(citiesRes),
+          topLinks: extractRankedList(linksRes),
+          topSetupItems: extractRankedList(setupRes),
+        })
       } catch (err) {
         const message = err instanceof Error ? err.message : '';
         if (message.toLowerCase().includes('unauthorized') || message.includes('401')) {

@@ -193,8 +193,8 @@ const SETUP = [
 export default function Home() {
     const [width, setWidth] = useState(0);
     const carousel = useRef<HTMLDivElement>(null);
-    const visitorIdRef = useRef(
-        localStorage.getItem('session:visitorId') ||
+    const sessionIdRef = useRef(
+        localStorage.getItem('session:sessionId') ||
           (typeof crypto !== 'undefined' && crypto.randomUUID
             ? crypto.randomUUID()
             : `${Date.now()}-${Math.random().toString(36).slice(2)}`)
@@ -204,25 +204,50 @@ export default function Home() {
         void action().catch(() => undefined);
     }
 
+    function getClientInfo() {
+        const ua = navigator.userAgent;
+        const lower = ua.toLowerCase();
+        const deviceType = /mobile|android|iphone|ipad/.test(lower) ? 'mobile' : 'desktop';
+
+        let browser = 'unknown';
+        if (lower.includes('edg/')) browser = 'edge';
+        else if (lower.includes('chrome/')) browser = 'chrome';
+        else if (lower.includes('firefox/')) browser = 'firefox';
+        else if (lower.includes('safari/') && !lower.includes('chrome/')) browser = 'safari';
+
+        let os = 'unknown';
+        if (lower.includes('windows')) os = 'windows';
+        else if (lower.includes('android')) os = 'android';
+        else if (lower.includes('iphone') || lower.includes('ipad') || lower.includes('ios')) os = 'ios';
+        else if (lower.includes('mac os')) os = 'macos';
+        else if (lower.includes('linux')) os = 'linux';
+
+        return { ua, deviceType, browser, os };
+    }
+
     function openThenTrack(kind: string, label: string, goal: string, url: string) {
         window.open(url, '_blank', 'noopener,noreferrer');
+        const timestamp = new Date().toISOString();
+        const path = window.location.pathname;
 
         sendTracking(() =>
             trackClick({
-                visitorId: visitorIdRef.current,
-                page: 'home',
-                kind,
-                label,
-                url,
+                sessionId: sessionIdRef.current,
+                path,
+                timestamp,
+                elementTag: 'a',
+                elementId: kind,
+                elementText: label,
             })
         );
 
         sendTracking(() =>
             trackGoal({
-                visitorId: visitorIdRef.current,
-                page: 'home',
-                goal,
-                url,
+                name: goal,
+                value: 1,
+                sessionId: sessionIdRef.current,
+                path,
+                timestamp,
             })
         );
     }
@@ -233,7 +258,7 @@ export default function Home() {
 
     function handleMediaKitClick() {
         const url = 'https://beacons.ai/brunofhorn/mediakit';
-        openThenTrack('media-kit', 'Midia Kit 2026', 'media-kit', url);
+        openThenTrack('media-kit', 'Midia Kit 2026', 'media-kit_click', url);
     }
 
     function handleSetupBuyClick(itemName: string, url: string) {
@@ -241,7 +266,9 @@ export default function Home() {
     }
     
     useEffect(() => {
-        localStorage.setItem('session:visitorId', visitorIdRef.current);
+        localStorage.setItem('session:sessionId', sessionIdRef.current);
+        const path = window.location.pathname;
+        const { ua, deviceType, browser, os } = getClientInfo();
 
         if (carousel.current) {
             setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth);
@@ -249,27 +276,31 @@ export default function Home() {
 
         sendTracking(() =>
             trackSession({
-                visitorId: visitorIdRef.current,
-                page: 'home',
-                userAgent: navigator.userAgent,
+                sessionId: sessionIdRef.current,
+                path,
+                timestamp: new Date().toISOString(),
+                userAgent: ua,
+                deviceType,
+                browser,
+                os,
             })
         );
 
         sendTracking(() =>
             trackView({
-                visitorId: visitorIdRef.current,
-                page: 'home',
-                title: document.title,
-                path: window.location.pathname,
+                sessionId: sessionIdRef.current,
+                path,
+                timestamp: new Date().toISOString(),
             })
         );
 
         const interval = window.setInterval(() => {
             sendTracking(() =>
                 trackPing({
-                    visitorId: visitorIdRef.current,
-                    page: 'home',
-                    ts: Date.now(),
+                    sessionId: sessionIdRef.current,
+                    path,
+                    duration: 30,
+                    timestamp: new Date().toISOString(),
                 })
             );
         }, 30000);
